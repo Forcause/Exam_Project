@@ -108,10 +108,54 @@ void MainInput(int lever, bool access) { //lever takes 49 or 50 (ASCII 1 or 2), 
 void Viewer(int lever, vector<string>& obj) { //lever takes 1 or 2, 1 means operating with Human-objects, 2 means operating with Subjects.
 	Drawer(1);
 	if (lever == 1) {
-
+		if (id[0] == 's') {
+			cout << "\n#Student: " << Humap[id].Surname + " " + Humap[id].Name + " " + Humap[id].Patronymic;
+			if (Humap[id].current_roles != NULL) {
+				cout << "\n# Roles:";
+				for (int i = 0; i < Humap[id].current_roles.size(); i++) cout << "\n#   " + Humap[id].current_roles[i];
+			}
+			if (Humap[id].subject_grades != NULL) {
+				cout << "\n# Grades:";
+				for (auto n : Humap[id].subject_grades) cout << "\n#   " + n;
+			}
+			if (Humap[id].subject_coursework != NULL) {
+				cout << "\n# Courseworks:";
+				for (auto n : Humap[id].subject_coursework) cout << "\n#   " + n;
+			}
+			if (Humap[id].scientific_director != NULL) {
+				cout << "\n# Scientific directors:";
+				for (int i = 0; i < Humap[id].scientific_director.size();i++) cout << "\n#   " + Humap[id].scientific_director[i];
+			}
+		}
+		else if (id[0] == 't') {
+			cout << "\n# Lecturer: " << Humap[id].Surname + " " + Humap[id].Name + " " + Humap[id].Patronymic;
+			if (Humap[id].current_roles != NULL) {
+				cout << "\n# Roles:";
+				for (int i = 0; i < Humap[id].current_roles.size(); i++) cout << "\n#   " + Humap[id].current_roles[i];
+			}
+			if (Humap[id].subject_thesis != NULL) {
+				cout << "\n# Courseworks:";
+				for (auto n : Humap[id].subject_thesis) cout << "\n#   " + n;
+			}
+			if (Humap[id].publications != NULL) {
+				cout << "\n# Roles:";
+				for (int i = 0; i < Humap[id].publications.size(); i++) cout << "\n#   " + Humap[id].publications[i];
+			}
+		}
+		else printf("No person with this name was found.");
 	}
 	else if (lever == 2) {
-
+		if (id[0] == 'o') {
+			cout << "\n# Organisation: " << Submap[id].Name;
+			if (Submap[id].departments != NULL) {
+				cout << "\n# Departments:";
+				for (int i = 0; i < Submap[id].departments.size(); i++) {
+					cout << "\n#   " + Submap[id].departments[i]+". Subjects:";
+					for (int j = 0; j < Submap[id].departments[i].subjects.size(); j++) cout << "\n#     " + Submap[id].departments[i].subjects[j];
+				}
+			}
+		}
+		else printf("No organisation with this name was found.");
 	}
 	Drawer(1);
 }
