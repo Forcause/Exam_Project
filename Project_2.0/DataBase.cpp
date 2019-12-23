@@ -1,32 +1,41 @@
 #include "DataBase.h"
 
+int global_counter = 0;
+
 void DataBase::AddStudent(Student student) {
-  return students_.push_back(student);
+  students_.insert(std::make_pair((2000 + global_counter), student));
+  global_counter++;
 }
 
 void DataBase::AddLecturer(Lecturer lecturer) {
-  return lecturers_.push_back(lecturer);
+  lecturers_.insert(std::make_pair((1000 + global_counter), lecturer));
+  global_counter++;
 }
 
-void DataBase::RemoveStudent(Student student) {
-  students_.erase(std::find_if(students_.begin(), students_.end(),
-                               [student](Student h) -> bool {
-                                 return static_cast<Human> (h) ==
-                                        static_cast<Human>(student);
-                               }));
+void DataBase::RemoveStudent(int id) { students_.erase(id); }
+
+void DataBase::RemoveLecturer(int id) { lecturers_.erase(id); }
+
+void DataBase::EditStudentGrade(int id, int grade, Subject subject) {
+  students_[id].EditGrade(grade, subject);
 }
 
-void DataBase::RemoveLecturer(Lecturer lecturer) {
-  lecturers_.erase(std::find_if(lecturers_.begin(), lecturers_.end(),
-                                [lecturer](Lecturer h) -> bool {
-        return static_cast<Human>(h) == static_cast<Human>(lecturer);
-      }));
+void DataBase::DeleteStudentCoursework(int id, Subject subject) {
+  students_[id].DeleteCoursework(subject);
 }
 
 vector<Student> const& DataBase::students() {
-  return students_;
+  vector<Student> studtmp;
+  for (auto it : students_) {
+    studtmp.push_back(it.second);
+  }
+  return studtmp;
 }
 
 vector<Lecturer> const& DataBase::lecturers() {
-  return lecturers_;
+  vector<Lecturer> lecttmp;
+  for (auto it : lecturers_) {
+    lecttmp.push_back(it.second);
+  }
+  return lecttmp;
 }

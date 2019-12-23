@@ -1,14 +1,11 @@
 #include "Human.h"
-static size_t hash() {
-  static size_t counter = 0;
-  return counter++;
-}
+
 Human::Human(string name, string surname, string patronymic)
-    : name_(name), surname_(surname), patronymic_(patronymic), uid_(hash()) {}
+    : name_(name), surname_(surname), patronymic_(patronymic) {}
 
-bool Human::AddRole(Role role) {
-  return role_.insert(role).second; }
+bool Human::AddRole(Role role) { return role_.insert(role).second; }
 
-size_t Human::uid() const { return uid_; }
-
-bool operator==(Human h1, Human h2) { return h1.uid_ == h2.uid_; }
+bool operator==(Human left, Human right) {
+  return left.name_ == right.name_ && left.surname_ == right.surname_ &&
+         left.patronymic_ == right.patronymic_;
+}
