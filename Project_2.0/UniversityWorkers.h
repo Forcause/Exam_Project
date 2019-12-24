@@ -5,7 +5,7 @@ using std::string;
 
 template <class T>
 class UniversityWorkers {
-  static_assert(std::is_convertible<T, Human>::value, "Ты пидорас");
+  static_assert(std::is_convertible<T, Human>::value, "Throw error");
   std::vector<T> base_;
 
  public:
