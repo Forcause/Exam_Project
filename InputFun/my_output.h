@@ -11,5 +11,5 @@ class Output {
 public:
 	static void Viewer(int lever, vector<string>& v);
 	static void Drawer(int lever);
-	static int* GetWindowSize();
+	static int GetWindowSize();
 };
