@@ -5,7 +5,7 @@
 void Output::Viewer(int lever, vector<string>& v) { //lever takes 1 or 2, 1 means operating with Human-objects, 2 means operating with Subjects.
 	Drawer(1);
 	if (lever == 1) {
-		/*if (Find(v).id[0] == 's') {
+		/*if (Student.Find(v)!=NULL) {
 			cout << "\n#Student: " << students_[id].Surname + " " + students_[id].Name + " " + students_[id].Patronymic;
 			if (students_[id].current_roles != NULL) {
 				cout << "\n# Roles:";
@@ -24,7 +24,7 @@ void Output::Viewer(int lever, vector<string>& v) { //lever takes 1 or 2, 1 mean
 				for (int i = 0; i < students_[id].scientific_director.size(); i++) cout << "\n#   " + students_[id].scientific_director[i];
 			}
 		}
-		else if (Find(v).id[0] == 't') {
+		else if (Lecturer.Find(v)!=NULL) {
 			cout << "\n# Lecturer: " << lecturer_[id].Surname + " " + lecturer_[id].Name + " " + lecturer_[id].Patronymic;
 			if (lecturer_[id].current_roles != NULL) {
 				cout << "\n# Roles:";
@@ -53,6 +53,7 @@ void Output::Viewer(int lever, vector<string>& v) { //lever takes 1 or 2, 1 mean
 			}
 		}
 		else printf("No organisation with this name was found.");*/
+
 	}
 	Drawer(1);
 }
