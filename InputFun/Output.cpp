@@ -57,21 +57,17 @@ void Output::Viewer(int lever, vector<string>& v) { //lever takes 1 or 2, 1 mean
 	Drawer(1);
 }
 
-int* Output::GetWindowSize() {
-	HANDLE hWndConsole; int width = -1, height = -1;
+int Output::GetWindowSize() {
+	HANDLE hWndConsole; int width = -1;
 	if (hWndConsole = GetStdHandle(-12)) {
 		CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
-		if (GetConsoleScreenBufferInfo(hWndConsole, &consoleInfo)) {
-			width = consoleInfo.srWindow.Right - consoleInfo.srWindow.Left + 1;
-			height = consoleInfo.srWindow.Bottom - consoleInfo.srWindow.Top + 1;
-		}
+		if (GetConsoleScreenBufferInfo(hWndConsole, &consoleInfo)) width = consoleInfo.srWindow.Right - consoleInfo.srWindow.Left + 1;
 		else
 			printf("#Error: %d\n", GetLastError());
 	}
 	else
 		printf("#Error: %d\n", GetLastError());
-	int* size = new int[2];
-	size[0] = width; size[1] = height;
+	int size = width;
 	return size;
 }
 
