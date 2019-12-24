@@ -72,8 +72,8 @@ int Output::GetWindowSize() {
 }
 
 void Output::Drawer(int lever) { //lever takes 0 or 1, 0 means write on the same string, 1 means jump to next one.
-	int* size = GetWindowSize();
-	if (size[0] == -1 || size[1] == -1) {
+	int size = GetWindowSize();
+	if (size == -1) {
 		printf("#An error occured! Please fix window size, then try again by pressing 'g'.\n");
 		int ch = -1;
 		while (ch != 103) ch = _getch();
@@ -81,7 +81,7 @@ void Output::Drawer(int lever) { //lever takes 0 or 1, 0 means write on the same
 	}
 	else {
 		if (lever == 1) cout << endl;
-		for (int i = 1; i <= size[0]; i++) {
+		for (int i = 1; i <= size; i++) {
 			cout << '#';
 		}
 	}
