@@ -5,7 +5,7 @@
 void Output::Viewer(int lever, vector<string>& v) { //lever takes 1 or 2, 1 means operating with Human-objects, 2 means operating with Subjects.
 	Drawer(1);
 	if (lever == 1) {
-		/*if (Find(v).id[0] == 's') {
+		/*if (Student.Find(v)!=NULL) {
 			cout << "\n#Student: " << students_[id].Surname + " " + students_[id].Name + " " + students_[id].Patronymic;
 			if (students_[id].current_roles != NULL) {
 				cout << "\n# Roles:";
@@ -24,7 +24,7 @@ void Output::Viewer(int lever, vector<string>& v) { //lever takes 1 or 2, 1 mean
 				for (int i = 0; i < students_[id].scientific_director.size(); i++) cout << "\n#   " + students_[id].scientific_director[i];
 			}
 		}
-		else if (Find(v).id[0] == 't') {
+		else if (Lecturer.Find(v)!=NULL) {
 			cout << "\n# Lecturer: " << lecturer_[id].Surname + " " + lecturer_[id].Name + " " + lecturer_[id].Patronymic;
 			if (lecturer_[id].current_roles != NULL) {
 				cout << "\n# Roles:";
@@ -53,31 +53,28 @@ void Output::Viewer(int lever, vector<string>& v) { //lever takes 1 or 2, 1 mean
 			}
 		}
 		else printf("No organisation with this name was found.");*/
+
 	}
 	Drawer(1);
 }
 
-int* Output::GetWindowSize() {
-	HANDLE hWndConsole; int width = -1, height = -1;
+int Output::GetWindowSize() {
+	HANDLE hWndConsole; int width = -1;
 	if (hWndConsole = GetStdHandle(-12)) {
 		CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
-		if (GetConsoleScreenBufferInfo(hWndConsole, &consoleInfo)) {
-			width = consoleInfo.srWindow.Right - consoleInfo.srWindow.Left + 1;
-			height = consoleInfo.srWindow.Bottom - consoleInfo.srWindow.Top + 1;
-		}
+		if (GetConsoleScreenBufferInfo(hWndConsole, &consoleInfo)) width = consoleInfo.srWindow.Right - consoleInfo.srWindow.Left + 1;
 		else
 			printf("#Error: %d\n", GetLastError());
 	}
 	else
 		printf("#Error: %d\n", GetLastError());
-	int* size = new int[2];
-	size[0] = width; size[1] = height;
+	int size = width;
 	return size;
 }
 
 void Output::Drawer(int lever) { //lever takes 0 or 1, 0 means write on the same string, 1 means jump to next one.
-	int* size = GetWindowSize();
-	if (size[0] == -1 || size[1] == -1) {
+	int size = GetWindowSize();
+	if (size == -1) {
 		printf("#An error occured! Please fix window size, then try again by pressing 'g'.\n");
 		int ch = -1;
 		while (ch != 103) ch = _getch();
@@ -85,7 +82,7 @@ void Output::Drawer(int lever) { //lever takes 0 or 1, 0 means write on the same
 	}
 	else {
 		if (lever == 1) cout << endl;
-		for (int i = 1; i <= size[0]; i++) {
+		for (int i = 1; i <= size; i++) {
 			cout << '#';
 		}
 	}
