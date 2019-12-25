@@ -1,18 +1,18 @@
 #pragma once
-#include "Human.h"
+#include "Person.h"
 #include "Subject.h"
 
-class Student : public Human {
-  map<Subject, int> subject_grades_;
-  map<Subject, string> subject_coursework_;
-  vector<Human> scientific_director_;
-
- public:
-  using Human::Human;
-  void AddGrade(Subject subject, int grade);
-  void AddCourseWork(Subject subject, string coursework_name);
-  void AddDirector(Human s);
-  void EditGrade(int grade, Subject subject);
-  void DeleteCoursework(Subject subject);
-  void EditDirector(Human director);
+class Student : public Person {
+    map<Subject, int> subject_grades_;
+    map<Subject, string> subject_coursework_;
+    vector<Person> scientific_director_;
+public:
+    using Person::Person;
+    void AddGrade(Subject subject, int grade);
+    void AddCourseWork(Subject subject, string coursework_name);
+    void AddDirector(Person s);
+    void EditGrade(int grade, Subject subject);
+    void DeleteCoursework(Subject subject);
+    void EditDirector(Person director);
+    string to_s(Student stud);
 };
