@@ -2,7 +2,7 @@
 
 void MainInput(int lever, bool access);
 
-Output output; Addons addons; UniversityWorkers uworkers;
+Output output; Addons addons; UniversityMembers umembers;
 
 int main() {
 	output.Drawer(1);
@@ -29,7 +29,7 @@ int main() {
 
 class Input {
 public:
-	static void MainInput(int lever, bool access) { //lever takes 49 or 50 (ASCII 1 or 2), 49 means operating with Human-objects, 50 means operating with Org. //access defines the type of access should be granted.
+	void MainInput(int lever, bool access) { //lever takes 49 or 50 (ASCII 1 or 2), 49 means operating with Human-objects, 50 means operating with Org. //access defines the type of access should be granted.
 		vector<string> v; string str;
 		if (lever == 49) {
 			if (access) cout << "\n#Allowed commands:\n#  Add student/lecturer <Surname> <Name> <Patronymic>\n#  Remove student/lecturer <Surname> <Name> <Patronymic>\n#  Edit student/lecturer <Surname> <Name> <Patronymic>\n#  View student/lecturer <Surname> <Name> <Patronymic>\n#  Input 'back' to return.";
@@ -45,19 +45,23 @@ public:
 				else {
 					if (v[1] == "STUDENT") {
 						if (v[0] == "ADD" && access) {
-							uworkers.Add(v[2], v[3], v[4]);
+							Student student(v[2],v[3],v[4]);
+							umembers.Add(student);
+							delete student;
 							break;
 						}
 						else if (v[0] == "REMOVE" && access) {
-							uworkers.Student a = uworkers.Student.Find(v[2], v[3], v[4]);
-							if (a != NULL) uworkers.Remove(a);
+							Student a = umembers.Find(v[2], v[3], v[4]);
+							if (a != NULL) umembers.Remove(a);
 							else cout << "\n#Error: no such person was found.";
+							delete a;
 							break;
 						}
 						else if (v[0] == "EDIT" && access) {
-							uworkers.Student a = uworkers.Student.Find(v[2], v[3], v[4]);
-							if (a != NULL) uworkers.Edit(a);
+							Student a = umembers.Find(v[2], v[3], v[4]);
+							if (a != NULL) output.Edit(a);
 							else cout << "\n#Error: no such person was found.";
+							delete a;
 							break;
 						}
 						else if (v[0] == "VIEW") {
@@ -68,19 +72,23 @@ public:
 					}
 					else if (v[1] == "LECTURER") {
 						if (v[0] == "ADD" && access) {
-							uworkers.Add(v[2], v[3], v[4]);
+							Lecturer lecturer(v[2], v[3], v[4]);
+							umembers.Add(lecturer);
+							delete lecturer;
 							break;
 						}
 						else if (v[0] == "REMOVE" && access) {
-							uworkers.Lecturer a = uworkers.Lecturer.Find(v[2], v[3], v[4]);
-							if (a != NULL) uworkers.RemoveLecturer(a);
+							Lecturer a = umembers.Find(v[2], v[3], v[4]);
+							if (a != NULL) umembers.Remove(a);
 							else cout << "\n#Error: no such person was found.";
+							delete a;
 							break;
 						}
 						else if (v[0] == "EDIT" && access) {
-							uworkers.Lecturer a = urowkers.Lecturer.Find(v[2], v[3], v[4]);
-							if (a != NULL) uworkers.Remove(a);
+							Lecturer a = umembers.Find(v[2], v[3], v[4]);
+							if (a != NULL) output.Edit(a);
 							else cout << "\n#Error: no such person was found.";
+							delete a;
 							break;
 						}
 						else if (v[0] == "VIEW") {
