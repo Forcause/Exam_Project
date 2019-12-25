@@ -1,13 +1,13 @@
 #include "UniversityMembers.h"
 
 template <class T>
-inline void UniversityMembers<T>::add(T const& human) {
-    base_.push_back(human);
+inline void UniversityMembers<T>::add(T const& person) {
+    base_.push_back(person);
 }
 
 template <class T>
-inline void UniversityMembers<T>::remove(T const& human) {
-    base_.erase(std::find(base_.begin(), base_.end(), human));
+inline void UniversityMembers<T>::remove(T const& person) {
+    base_.erase(std::find(base_.begin(), base_.end(), person));
 }
 
 template <class T>
@@ -17,8 +17,8 @@ inline auto UniversityMembers<T>::find(
 }
 
 template <class T>
-inline auto UniversityMembers<T>::find(T const& human) {
-    return std::find(base_.begin(), base_.end(), human);
+inline auto UniversityMembers<T>::find(T const& person) {
+    return std::find(base_.begin(), base_.end(), person);
 }
 
 template <class T>

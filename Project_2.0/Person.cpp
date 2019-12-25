@@ -3,7 +3,7 @@
 Person::Person(string name, string surname, string patronymic)
     : name_(name), surname_(surname), patronymic_(patronymic) {}
 
-bool Person::AddRole(Role role) { return role_.insert(role).second; }
+//bool Person::AddRole(Role role) { return role_.insert(role).second; }
 
 string const& Person::name() const { return name_; }
 

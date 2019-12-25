@@ -23,7 +23,7 @@ class Person {
 public:
     Person(string, string, string);
 
-    bool addRole(Role);  // returns TRUE if new role
+    //bool addRole(Role);  // returns TRUE if new role
     string const& name() const;
     string const& surname() const;
     string const& patronymic() const;

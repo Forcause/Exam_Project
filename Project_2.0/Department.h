@@ -15,8 +15,8 @@ public:
     void addStudent(string const&, string const&, string const&);
     void addLecturer(string const&, string const&, string const&);
     inline auto findMember(string const&, string const&, string const&);
-    Student findStudent( string const&, string const&, string const& );
-    Lecturer findLecturer( string const&, string const&, string const& );
+    Student findStudent(string const&, string const&, string const&);
+    Lecturer findLecturer(string const&, string const&, string const&);
     void removeStudent(Student);
     void removeLecturer(Lecturer);
 };

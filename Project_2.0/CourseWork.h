@@ -4,6 +4,7 @@
 class CourseWork : public Research {
     int course_;
     double grade_;
+    int subject;
 public:
     using Research::Research;
     int course();

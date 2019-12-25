@@ -1,18 +1,15 @@
 #pragma once
 #include "Person.h"
-#include "Subject.h"
+#include "CourseWork.h"
 
 class Student : public Person {
-    map<Subject, int> subject_grades_;
-    map<Subject, string> subject_coursework_;
-    vector<Person> scientific_director_;
+    map<string, int> subject_grades_;
+    vector<CourseWork> courseworks_;
+   // vector<Person> scientific_director_;
 public:
     using Person::Person;
-    void AddGrade(Subject subject, int grade);
-    void AddCourseWork(Subject subject, string coursework_name);
-    void AddDirector(Person s);
-    void EditGrade(int grade, Subject subject);
-    void DeleteCoursework(Subject subject);
-    void EditDirector(Person director);
+    void addCourseWork(CourseWork);
+    vector<CourseWork> const& courseworks() const;
+    void editGrade(string, int);
     string to_s(Student stud);
 };

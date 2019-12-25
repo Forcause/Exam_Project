@@ -4,7 +4,7 @@
 class Research {
     const string title_;
     const string date_;
-    const vector<string> authors_;
+    const vector<Person> authors_;
     vector<string> key_words_;
     string description_;
 public:

@@ -28,3 +28,6 @@ void Department::removeStudent(Student student) {
 void Department::removeLecturer(Lecturer lecturer) {
     lecturers_.remove(lecturer);
 };
+bool operator ==(const Department& first, const Department& second) {
+    return first.title == second.title;
+}
