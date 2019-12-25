@@ -1,47 +1,49 @@
 #include "my_output.h"
-#include "Student.h"
-#include "Lecturer.h"
 
-void Output::Viewer(int lever, vector<string>& v) { //lever takes 1 or 2, 1 means operating with Human-objects, 2 means operating with Subjects.
+Addons addons; UniversityWorkers uworkers;
+
+void Output::Viewer(int lever, vector<string>& v) { //lever takes 1 or 2, 1 means operating with Human-objects, 2 means operating with Org.
 	Drawer(1);
 	if (lever == 1) {
-		/*if (Student.Find(v)!=NULL) {
-			cout << "\n#Student: " << students_[id].Surname + " " + students_[id].Name + " " + students_[id].Patronymic;
-			if (students_[id].current_roles != NULL) {
+		if (uworkers.Student.Find(v)!=NULL) {
+			uworkers.Student student;
+			cout << "\n#Student: " << student.Surname + " " + student.Name + " " + student.Patronymic;
+			if (student.current_roles != NULL) {
 				cout << "\n# Roles:";
-				for (int i = 0; i < students_[id].current_roles.size(); i++) cout << "\n#   " + students_[id].current_roles[i];
+				for (int i = 0; i < student.current_roles.size(); i++) cout << "\n#   " + student.current_roles[i];
 			}
-			if (students_[id].subject_grades != NULL) {
+			if (student.subject_grades != NULL) {
 				cout << "\n# Grades:";
-				for (auto n : students_[id].subject_grades) cout << "\n#   " + n;
+				for (auto n : student.subject_grades) cout << "\n#   " + n.first + ": " + n.second;
 			}
-			if (students_[id].subject_coursework != NULL) {
+			if (student.subject_coursework != NULL) {
 				cout << "\n# Courseworks:";
-				for (auto n : students_[id].subject_coursework) cout << "\n#   " + n;
+				for (auto n : student.subject_coursework) cout << "\n#   " + n.first + ": " + n.second;
 			}
-			if (students_[id].scientific_director != NULL) {
+			if (student.scientific_director != NULL) {
 				cout << "\n# Scientific directors:";
-				for (int i = 0; i < students_[id].scientific_director.size(); i++) cout << "\n#   " + students_[id].scientific_director[i];
+				for (int i = 0; i < student.scientific_director.size(); i++) cout << "\n#   " + student.scientific_director[i];
 			}
 		}
-		else if (Lecturer.Find(v)!=NULL) {
-			cout << "\n# Lecturer: " << lecturer_[id].Surname + " " + lecturer_[id].Name + " " + lecturer_[id].Patronymic;
-			if (lecturer_[id].current_roles != NULL) {
+		else if (uworkers.Lecturer.Find(v)!=NULL) {
+			uworkers.Lecturer lecturer
+			cout << "\n# Lecturer: " << lecturer.Surname + " " + lecturer.Name + " " + lecturer.Patronymic;
+			if (lecturer.current_roles != NULL) {
 				cout << "\n# Roles:";
-				for (int i = 0; i < lecturer_[id].current_roles.size(); i++) cout << "\n#   " + lecturer_[id].current_roles[i];
+				for (int i = 0; i < lecturer_[id].current_roles.size(); i++) cout << "\n#   " + lecturer.current_roles[i];
 			}
-			if (lecturer_[id].subject_thesis != NULL) {
+			if (lecturer.subject_thesis != NULL) {
 				cout << "\n# Courseworks:";
-				for (auto n : lecturer_[id].subject_thesis) cout << "\n#   " + n;
+				for (auto n : lecturer.subject_thesis) cout << "\n#   " + n.first + ": " + n.second;
 			}
-			if (lecturer_[id].publications != NULL) {
+			if (lecturer.publications != NULL) {
 				cout << "\n# Roles:";
-				for (int i = 0; i < lecturer_[id].publications.size(); i++) cout << "\n#   " + lecturer_[id].publications[i];
+				for (int i = 0; i < lecturer.publications.size(); i++) cout << "\n#   " + lecturer.publications[i];
 			}
 		}
-		else printf("No person with this name was found.");
+		else cout << "No person with this name was found.";
 	}
-	else if (lever == 2) {
+	/*else if (lever == 2) {
 		if (Find(v).id[0] == 'o') {
 			cout << "\n# Organisation: " << Submap[id].Name;
 			if (Submap[id].departments != NULL) {
@@ -52,32 +54,18 @@ void Output::Viewer(int lever, vector<string>& v) { //lever takes 1 or 2, 1 mean
 				}
 			}
 		}
-		else printf("No organisation with this name was found.");*/
+		else cout << "No organisation with this name was found.";
 
-	}
+	}*/
 	Drawer(1);
 }
 
-int Output::GetWindowSize() {
-	HANDLE hWndConsole; int width = -1;
-	if (hWndConsole = GetStdHandle(-12)) {
-		CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
-		if (GetConsoleScreenBufferInfo(hWndConsole, &consoleInfo)) width = consoleInfo.srWindow.Right - consoleInfo.srWindow.Left + 1;
-		else
-			printf("#Error: %d\n", GetLastError());
-	}
-	else
-		printf("#Error: %d\n", GetLastError());
-	int size = width;
-	return size;
-}
-
 void Output::Drawer(int lever) { //lever takes 0 or 1, 0 means write on the same string, 1 means jump to next one.
-	int size = GetWindowSize();
+	int size = addons.GetWindowSize();
 	if (size == -1) {
-		printf("#An error occured! Please fix window size, then try again by pressing 'g'.\n");
+		cout << "#An error occured! Please fix window size, then try again by pressing 'g'.\n";
 		int ch = -1;
-		while (ch != 103) ch = _getch();
+		while (ch != 103) ch = _getch(); //ASCII g=103
 		if (ch == 103) { system("CLS");  Drawer(1); };
 	}
 	else {
