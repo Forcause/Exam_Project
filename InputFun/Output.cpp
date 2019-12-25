@@ -5,9 +5,9 @@ Addons addons; UniversityWorkers uworkers;
 void Output::Viewer(int lever, vector<string>& v) { //lever takes 1 or 2, 1 means operating with Human-objects, 2 means operating with Org.
 	Drawer(1);
 	if (lever == 1) {
-		if (uworkers.Student.Find(v)!=NULL) {
-			uworkers.Student student;
-			cout << "\n#Student: " << student.Surname + " " + student.Name + " " + student.Patronymic;
+		if (uworkers.Find(v)!=NULL) {
+			Student student;
+			cout << "\n#Student: " << student.surname_ + " " + student.name_ + " " + student.patronymic_;
 			if (student.current_roles != NULL) {
 				cout << "\n# Roles:";
 				for (int i = 0; i < student.current_roles.size(); i++) cout << "\n#   " + student.current_roles[i];
@@ -25,19 +25,15 @@ void Output::Viewer(int lever, vector<string>& v) { //lever takes 1 or 2, 1 mean
 				for (int i = 0; i < student.scientific_director.size(); i++) cout << "\n#   " + student.scientific_director[i];
 			}
 		}
-		else if (uworkers.Lecturer.Find(v)!=NULL) {
-			uworkers.Lecturer lecturer
-			cout << "\n# Lecturer: " << lecturer.Surname + " " + lecturer.Name + " " + lecturer.Patronymic;
+		else if (uworkers.Find(v)!=NULL) {
+			Lecturer lecturer
+			cout << "\n# Lecturer: " << lecturer.surname_ + " " + lecturer.name_ + " " + lecturer.patronymic_;
 			if (lecturer.current_roles != NULL) {
 				cout << "\n# Roles:";
-				for (int i = 0; i < lecturer_[id].current_roles.size(); i++) cout << "\n#   " + lecturer.current_roles[i];
-			}
-			if (lecturer.subject_thesis != NULL) {
-				cout << "\n# Courseworks:";
-				for (auto n : lecturer.subject_thesis) cout << "\n#   " + n.first + ": " + n.second;
+				for (int i = 0; i < lecturer.current_roles.size(); i++) cout << "\n#   " + lecturer.current_roles[i];
 			}
 			if (lecturer.publications != NULL) {
-				cout << "\n# Roles:";
+				cout << "\n# Publications:";
 				for (int i = 0; i < lecturer.publications.size(); i++) cout << "\n#   " + lecturer.publications[i];
 			}
 		}
