@@ -9,7 +9,6 @@ using namespace std;
 
 class Output {
 public:
-	static void Viewer(int lever, vector<string>& v);
-	static void Drawer(int lever);
-	static int* GetWindowSize();
+	void Viewer(int lever, vector<string>& v);
+	void Drawer(int lever);
 };
