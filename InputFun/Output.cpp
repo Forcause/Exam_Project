@@ -1,14 +1,12 @@
 #include "my_output.h"
-#include "my_addons.h"
-#include "UniversityWorkers"
 
-Addons addons;
+Addons addons; UniversityWorkers uworkers;
 
 void Output::Viewer(int lever, vector<string>& v) { //lever takes 1 or 2, 1 means operating with Human-objects, 2 means operating with Org.
 	Drawer(1);
 	if (lever == 1) {
-		if (UniversityWorkers.Student.Find(v)!=NULL) {
-			UniversityWorkers.Student student;
+		if (uworkers.Student.Find(v)!=NULL) {
+			uworkers.Student student;
 			cout << "\n#Student: " << student.Surname + " " + student.Name + " " + student.Patronymic;
 			if (student.current_roles != NULL) {
 				cout << "\n# Roles:";
@@ -27,8 +25,8 @@ void Output::Viewer(int lever, vector<string>& v) { //lever takes 1 or 2, 1 mean
 				for (int i = 0; i < student.scientific_director.size(); i++) cout << "\n#   " + student.scientific_director[i];
 			}
 		}
-		else if (UniversityWorkers.Lecturer.Find(v)!=NULL) {
-			UniversityWorkers.Lecturer lecturer
+		else if (uworkers.Lecturer.Find(v)!=NULL) {
+			uworkers.Lecturer lecturer
 			cout << "\n# Lecturer: " << lecturer.Surname + " " + lecturer.Name + " " + lecturer.Patronymic;
 			if (lecturer.current_roles != NULL) {
 				cout << "\n# Roles:";

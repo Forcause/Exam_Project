@@ -1,10 +1,8 @@
 #include "my_output.h"
-#include "my_addons.h"
-#include "UniversityWorkers.h"
 
 void MainInput(int lever, bool access);
 
-Output output; Addons addons;
+Output output; Addons addons; UniversityWorkers uworkers;
 
 int main() {
 	output.Drawer(1);
@@ -34,31 +32,31 @@ public:
 	static void MainInput(int lever, bool access) { //lever takes 49 or 50 (ASCII 1 or 2), 49 means operating with Human-objects, 50 means operating with Org. //access defines the type of access should be granted.
 		vector<string> v; string str;
 		if (lever == 49) {
-			if (access) cout << "\n#Allowed commands:\n#  Add <Surname> <Name> <Patronymic>\n#  Remove <Surname> <Name> <Patronymic>\n#  Edit <Surname> <Name> <Patronymic>\n#  View <Surname> <Name> <Patronymic>\n#  Input 'back' to return.";
-			else cout << "\n#Allowed commands:\n#  View <Surname> <Name> <Patronymic>\n#  Input 'back' to return.";
+			if (access) cout << "\n#Allowed commands:\n#  Add student/lecturer <Surname> <Name> <Patronymic>\n#  Remove student/lecturer <Surname> <Name> <Patronymic>\n#  Edit student/lecturer <Surname> <Name> <Patronymic>\n#  View student/lecturer <Surname> <Name> <Patronymic>\n#  Input 'back' to return.";
+			else cout << "\n#Allowed commands:\n#  View student/lecturer <Surname> <Name> <Patronymic>\n# Input 'back' to return.";
 			while (1) {
 				output.Drawer(1); cout << "\n#>";
 				getline(cin, str);
 				for (int i = 0; i < str.size(); i++) str[i] = toupper(str[i]);
 				output.Drawer(0);
 				addons.Split(str, v, ' ');
-				if (v.size() != 4 && v[0] != "BACK") cout << "\n#Error: wrong input!";
+				if (v.size() != 5 && v[0] != "BACK") cout << "\n#Error: wrong input!";
 				else if (v[0] == "BACK") break;
 				else {
-					if () {
+					if (v[1] == "STUDENT") {
 						if (v[0] == "ADD" && access) {
-							UniversityWorkers::AddStudent(v[1], v[2], v[3]);
+							uworkers.Add(v[2], v[3], v[4]);
 							break;
 						}
 						else if (v[0] == "REMOVE" && access) {
-							Student a = UniversityWorkers::Student.Find(v[1], v[2], v[3]);
-							if (a != NULL) UniversityWorkers::RemoveStudent(a);
+							uworkers.Student a = uworkers.Student.Find(v[2], v[3], v[4]);
+							if (a != NULL) uworkers.Remove(a);
 							else cout << "\n#Error: no such person was found.";
 							break;
 						}
 						else if (v[0] == "EDIT" && access) {
-							Student a = UniversityWorkers::Student.Find(v[1], v[2], v[3]);
-							if (a != NULL) UniversityWorkers::EditStudent(a);
+							uworkers.Student a = uworkers.Student.Find(v[2], v[3], v[4]);
+							if (a != NULL) uworkers.Edit(a);
 							else cout << "\n#Error: no such person was found.";
 							break;
 						}
@@ -66,22 +64,22 @@ public:
 							output.Viewer(1, v);
 							break;
 						}
-						else cout << "\n#Unknown command, please try again..";
+						else cout << "\n#Error: Unknown command, please try again..";
 					}
-					else if () {
+					else if (v[1] == "LECTURER") {
 						if (v[0] == "ADD" && access) {
-							UniversityWorkers::AddLecturer(v[1], v[2], v[3]);
+							uworkers.Add(v[2], v[3], v[4]);
 							break;
 						}
 						else if (v[0] == "REMOVE" && access) {
-							Lecturer a = UniversityWorkers::Lecturer.Find(v[1], v[2], v[3]);
-							if (a != NULL) UniversityWorkers::RemoveLecturer(a);
+							uworkers.Lecturer a = uworkers.Lecturer.Find(v[2], v[3], v[4]);
+							if (a != NULL) uworkers.RemoveLecturer(a);
 							else cout << "\n#Error: no such person was found.";
 							break;
 						}
 						else if (v[0] == "EDIT" && access) {
-							Lecturer a = UniversityWorkers::Lecturer.Find(v[1], v[2], v[3]);
-							if (a != NULL) UniversityWorkers::RemoveStudent(a);
+							uworkers.Lecturer a = urowkers.Lecturer.Find(v[2], v[3], v[4]);
+							if (a != NULL) uworkers.Remove(a);
 							else cout << "\n#Error: no such person was found.";
 							break;
 						}
@@ -89,12 +87,13 @@ public:
 							output.Viewer(1, v);
 							break;
 						}
-						else cout << "\n#Unknown command, please try again..";
+						else cout << "\n#Error: Unknown command, please try again..";
 					}
+					else cout << "\n#Error: Unknown command, please try again..";
 				}
 			}
 		}
-		else if (lever == 50) {
+		/*else if (lever == 50) {
 			cout << "\n#Allowed commands:\n#  View <Name>";
 			while (1) {
 				output.Drawer(1); cout << "\n#>";
@@ -106,11 +105,11 @@ public:
 						output.Viewer(2, v);
 						break;
 					}
-					else cout << "\n#Unknown command, please try again..";
+					else cout << "\n#Error: Unknown command, please try again..";
 				}
 				else cout << "\n#Error: no such organisation was found.";
 			}
-		}
+		}*/
 	}
 };
 

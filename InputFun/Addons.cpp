@@ -1,5 +1,4 @@
 #include "my_addons.h"
-#include "my_output.h"
 
 Output output;
 

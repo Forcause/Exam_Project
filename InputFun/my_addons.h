@@ -3,6 +3,7 @@
 #include <string>
 #include <conio.h>
 #include <iostream>
+#include "my_output.h"
 
 using namespace std;
 
