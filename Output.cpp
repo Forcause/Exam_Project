@@ -6,7 +6,6 @@ void Output::Viewer(int lever, int plever, vector<string>& v, University& uni) {
 	if (lever == 1) {
 		if (plever == 1) {
 			if (1) {
-				//Student student = umembers.find(v);
 				cout << "\n#Student: " << uni.findStudent(v[3], v[2], v[4])->surname() << " " << uni.findStudent(v[3], v[2], v[4])->name() << " " << uni.findStudent(v[3], v[2], v[4])->patronymic();
 				/*if (student.roles().size()!=0) {
 					cout << "\n# Roles:";
@@ -24,22 +23,19 @@ void Output::Viewer(int lever, int plever, vector<string>& v, University& uni) {
 					cout << "\n# Scientific directors:";
 					for (int i = 0; i < student.scientific_director().size(); i++) cout << "\n#   " << student.scientific_director()[i];
 				}*/
-				//delete student;
 			}
 		}
 		else if (plever == 2) {
 			if (1) {
-				//Lecturer lecturer = umembers.find(v);
 				cout << "\n# Lecturer: " << uni.findLecturer(v[3], v[2], v[4])->surname() << " " << uni.findLecturer(v[3], v[2], v[4])->name() << " " << uni.findLecturer(v[3], v[2], v[4])->patronymic();
 				/*if (lecturer.roles()size()!=0) {
 					cout << "\n# Roles:";
 					for (int i = 0; i < lecturer.roles().size(); i++) cout << "\n#   " << lecturer.roles()[i];
 				}*/
 				if (uni.findLecturer(v[3], v[2], v[4])->publications().size()!=0) {
-					cout << "\n# Roles:";
-					for (auto n : uni.findLecturer(v[3], v[2], v[4])->publications()) cout << "\n#   " << n.title() << " " << n.date();
+					cout << "\n# Publications:";
+					for (auto n : uni.findLecturer(v[3], v[2], v[4])->publications()) cout << "\n#   " << n.date() << " " << n.title();
 				}
-				//delete lecturer;
 			}
 		}
 		else cout << "No person with this name was found.";
@@ -147,7 +143,6 @@ void Output::Edit(Lecturer& lecturer, University& uni) {
 		for (int i = 0; i < str.size(); i++) str[i] = toupper(str[i]);
 		addons.Split(str, v, ' ');
 		if (v[0] == "ADD" && v[1] == "PUBLICATION") {
-			UniversityMembers<Lecturer> umembers;
 			Drawer(1);
 			cout << "\n#Title: >";
 			string title;
@@ -155,19 +150,8 @@ void Output::Edit(Lecturer& lecturer, University& uni) {
 			cout << "\n#Date (mm/dd/yy): ";
 			string date;
 			getline(cin, date);
-			cout << "\n#Authors (author, author,..): ";
-			string auth;
-			getline(cin, auth);
-			vector<string> a_ve_tmp, a_ve; vector<Person> p_ve;
-			addons.Split(auth, a_ve_tmp, ',');
-			for (auto n : a_ve_tmp) {
-				addons.Split(n, a_ve, ' ');
-				p_ve.push_back(*umembers.find(a_ve[2], a_ve[3], a_ve[4]));
-			}
-			string s;
-			getline(cin, s);
-			vector<string> ve;
-			addons.Split(s, ve, ' ');
+			vector<Person> p_ve;
+			p_ve.push_back(*uni.findLecturer(lecturer));
 			Publication res(title,date,p_ve);
 			lecturer.addPublication(res);
 			break;
