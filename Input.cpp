@@ -17,7 +17,7 @@ void Input::MainInput(int lever, bool access, University& uni) { //lever takes 4
 			else {
 				if (v[1] == "STUDENT") {
 					if (v[0] == "ADD" && access && v.size()==6) {
-						uni.findDepartment(v[2])->addStudent(v[3], v[4], v[5]);
+						uni.findDepartment(v[2])->addStudent(v[4], v[3], v[5]);
 						break;
 					}
 					else if (v[0] == "REMOVE" && access) {
@@ -41,8 +41,8 @@ void Input::MainInput(int lever, bool access, University& uni) { //lever takes 4
 					else cout << "\n#Error: Unknown command, please try again..";
 				}
 				else if (v[1] == "LECTURER") {
-					if (v[0] == "ADD" && access) {
-						uni.findDepartment(v[1])->addLecturer(v[3], v[4], v[5]);
+					if (v[0] == "ADD" && access && v.size()==6) {
+						uni.findDepartment(v[2])->addLecturer(v[4], v[3], v[5]);
 						break;
 					}
 					else if (v[0] == "REMOVE" && access) {
